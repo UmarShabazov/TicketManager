@@ -1,0 +1,18 @@
+[
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "Aeroflot",
+    "price": 500,
+    "departureTime": "2024-08-20T10:15:00",
+    "arrivalTime": "2024-08-20T14:45:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "A7",
+    "price": 550,
+    "departureTime": "2024-08-21T11:15:00",
+    "arrivalTime": "2024-08-21T15:45:00"
+  }
+]

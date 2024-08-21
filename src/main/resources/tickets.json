@@ -1,0 +1,82 @@
+[
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "Aeroflot",
+    "price": 1500,
+    "departureTime": "2024-08-20T22:15:00",
+    "arrivalTime": "2024-08-21T13:15:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "A7",
+    "price": 9550,
+    "departureTime": "2024-08-21T23:30:00",
+    "arrivalTime": "2024-08-22T16:45:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "Aeroflot",
+    "price": 2450,
+    "departureTime": "2024-08-22T08:00:00",
+    "arrivalTime": "2024-08-22T23:00:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "El Al",
+    "price": 1600,
+    "departureTime": "2024-08-23T01:00:00",
+    "arrivalTime": "2024-08-23T17:00:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "El Al",
+    "price": 1650,
+    "departureTime": "2024-08-24T03:00:00",
+    "arrivalTime": "2024-08-24T18:00:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "Aeroflot",
+    "price": 1700,
+    "departureTime": "2024-08-25T06:30:00",
+    "arrivalTime": "2024-08-25T21:45:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "A7",
+    "price": 3480,
+    "departureTime": "2024-08-26T14:15:00",
+    "arrivalTime": "2024-08-27T07:15:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "El Al",
+    "price": 1520,
+    "departureTime": "2024-08-27T04:00:00",
+    "arrivalTime": "2024-08-27T19:30:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "A7",
+    "price": 4700,
+    "departureTime": "2024-08-28T20:30:00",
+    "arrivalTime": "2024-08-29T11:45:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "Aeroflot",
+    "price": 1600,
+    "departureTime": "2024-08-29T09:20:00",
+    "arrivalTime": "2024-08-30T01:00:00"
+  }
+]
