@@ -1,11 +1,13 @@
-package org.example;
+package org.example.service;
+
+import org.example.entity.TicketEntity;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class FlightDurationCalculator {
+public class FlightDurationCalculatorService {
 
     /**
      * Method for calculating the minimum flight duration between two cities for each carrier.
@@ -23,7 +25,7 @@ public class FlightDurationCalculator {
                 .collect(Collectors.groupingBy(
                         TicketEntity::getCarrier,
                         Collectors.mapping(
-                                TicketEntity::getFlightDuration,
+                                TicketEntity::getTotalFlightDuration,
                                 Collectors.minBy(Duration::compareTo)
                         )
                 ))

@@ -1,22 +1,14 @@
-package org.example;
+package org.example.entity;
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 
+public class FlightSegmentEntity {
 
-public class TicketEntity {
-
-    /**
-     * The city of departure.
-     */
     private String origin;
-
-    /**
-     * The city of arrival.
-     */
     private String destination;
 
     @JsonProperty("departureTime")
@@ -27,9 +19,7 @@ public class TicketEntity {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime arrivalTime;
 
-    private String carrier;
     private int price;
-
 
     public String getOrigin() {
         return origin;
@@ -63,28 +53,8 @@ public class TicketEntity {
         this.arrivalTime = arrivalTime;
     }
 
-    public String getCarrier() {
-        return carrier;
-    }
-
-    public void setCarrier(String carrier) {
-        this.carrier = carrier;
-    }
 
     public int getPrice() {
         return price;
     }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Duration getFlightDuration() {
-        if (departureTime != null && arrivalTime != null) {
-            return Duration.between(departureTime, arrivalTime);
-        } else {
-            return Duration.ZERO;
-        }
-    }
-
 }

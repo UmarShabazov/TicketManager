@@ -1,11 +1,16 @@
 package org.example;
 
+import org.example.entity.TicketEntity;
+import org.example.service.FlightDurationCalculatorService;
+import org.example.service.PriceAnalyzerService;
+import org.example.util.TicketDeserializerUtil;
+
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-public class FlightAnalyzerImpl {
+public class Main {
 
     public static void main(String[] args) {
 
@@ -14,15 +19,15 @@ public class FlightAnalyzerImpl {
             return;
         }
 
-        TicketDeserializer deserializer = new TicketDeserializer();
-        FlightDurationCalculator durationCalculator = new FlightDurationCalculator();
-        PriceAnalyzer priceAnalyzer = new PriceAnalyzer();
+        TicketDeserializerUtil deserializer = new TicketDeserializerUtil();
+        FlightDurationCalculatorService durationCalculator = new FlightDurationCalculatorService();
+        PriceAnalyzerService priceAnalyzerService = new PriceAnalyzerService();
 
         try {
             List<TicketEntity> tickets = deserializer.deserializeTickets(args[0]);
 
             Map<String, Duration> minFlightTime = durationCalculator.calculateMinFlightTime(tickets, "Vladivostok", "Tel Aviv");
-            double priceDifference = priceAnalyzer.calculatePriceDifference(tickets, "Vladivostok", "Tel Aviv");
+            double priceDifference = priceAnalyzerService.calculatePriceDifference(tickets, "Vladivostok", "Tel Aviv");
 
             System.out.println("Minimum flight time by carrier:");
             for (Map.Entry<String, Duration> entry : minFlightTime.entrySet()) {

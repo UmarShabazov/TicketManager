@@ -14,5 +14,27 @@
     "price": 550,
     "departureTime": "2024-08-21T11:15:00",
     "arrivalTime": "2024-08-21T15:45:00"
+  },
+  {
+    "origin": "Vladivostok",
+    "destination": "Tel Aviv",
+    "carrier": "A7",
+    "price": 3600,
+    "segments": [
+      {
+        "origin": "Vladivostok",
+        "destination": "Bangkok",
+        "departureTime": "2024-09-04T00:00:00",
+        "arrivalTime": "2024-09-04T06:00:00",
+        "price": 2500
+      },
+      {
+        "origin": "Bangkok",
+        "destination": "Tel Aviv",
+        "departureTime": "2024-09-04T08:00:00",
+        "arrivalTime": "2024-09-04T15:30:00",
+        "price": 1100
+      }
+    ]
   }
 ]

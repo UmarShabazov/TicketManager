@@ -1,4 +1,7 @@
-package org.example;
+package org.example.service;
+
+import org.example.entity.ConnectingFlightEntity;
+import org.example.entity.TicketEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,10 +12,27 @@ import java.util.stream.Collectors;
  * It allows filtering and sorting prices, calculating the average and median prices, and determining the difference
  * between the average and median prices for flights between the specified cities.
  */
-public class PriceAnalyzer {
+public class PriceAnalyzerService {
 
     public List<Integer> filterAndSortPrices(List<TicketEntity> tickets, String origin, String destination) {
-        return tickets.stream().filter(ticket -> ticket.getOrigin().equals(origin) && ticket.getDestination().equals(destination)).map(TicketEntity::getPrice).sorted().collect(Collectors.toList());
+        return tickets.stream()
+                .filter(ticket -> ticketMatchesRoute(ticket, origin, destination))
+                .map(TicketEntity::getPrice)
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    private boolean ticketMatchesRoute(TicketEntity ticket, String origin, String destination) {
+        if (ticket instanceof ConnectingFlightEntity) {
+            var segments = ((ConnectingFlightEntity) ticket).getSegments();
+            String firstSegmentOrigin = segments.get(0).getOrigin();
+            String lastSegmentDestination = segments.get(segments.size() - 1).getDestination();
+            return firstSegmentOrigin.equals(origin) && lastSegmentDestination.equals(destination);
+        }
+       else {
+            return ticket.getOrigin().equals(origin) && ticket.getDestination().equals(destination);
+        }
+
     }
 
     public double calculateAveragePrice(List<Integer> prices) {
