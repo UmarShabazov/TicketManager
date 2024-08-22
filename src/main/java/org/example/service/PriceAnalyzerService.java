@@ -1,7 +1,6 @@
 package org.example.service;
 
-import org.example.entity.ConnectingFlightEntity;
-import org.example.entity.TicketEntity;
+import org.example.entity.RouteNode;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,26 +13,13 @@ import java.util.stream.Collectors;
  */
 public class PriceAnalyzerService {
 
-    public List<Integer> filterAndSortPrices(List<TicketEntity> tickets, String origin, String destination) {
-        return tickets.stream()
-                .filter(ticket -> ticketMatchesRoute(ticket, origin, destination))
-                .map(TicketEntity::getPrice)
+    public List<Integer> getSortedPricesFromRoutes(List<RouteNode> routes) {
+        return routes.stream()
+                .map(RouteNode::getTotalPrice)
                 .sorted()
                 .collect(Collectors.toList());
     }
 
-    private boolean ticketMatchesRoute(TicketEntity ticket, String origin, String destination) {
-        if (ticket instanceof ConnectingFlightEntity) {
-            var segments = ((ConnectingFlightEntity) ticket).getSegments();
-            String firstSegmentOrigin = segments.get(0).getOrigin();
-            String lastSegmentDestination = segments.get(segments.size() - 1).getDestination();
-            return firstSegmentOrigin.equals(origin) && lastSegmentDestination.equals(destination);
-        }
-       else {
-            return ticket.getOrigin().equals(origin) && ticket.getDestination().equals(destination);
-        }
-
-    }
 
     public double calculateAveragePrice(List<Integer> prices) {
         return prices.stream().mapToInt(Integer::intValue).average().orElse(0.0);
@@ -50,9 +36,8 @@ public class PriceAnalyzerService {
         }
     }
 
-
-    public double calculatePriceDifference(List<TicketEntity> tickets, String origin, String destination) {
-        List<Integer> prices = filterAndSortPrices(tickets, origin, destination);
+    public double calculatePriceDifference(List<RouteNode> routes) {
+        List<Integer> prices = getSortedPricesFromRoutes(routes);
         double averagePrice = calculateAveragePrice(prices);
         double medianPrice = calculateMedianPrice(prices);
 

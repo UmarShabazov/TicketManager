@@ -1,9 +1,12 @@
 package org.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 
-public abstract class TicketEntity {
+public class TicketEntity {
 
     /**
      * The city of departure.
@@ -15,20 +18,16 @@ public abstract class TicketEntity {
      */
     private String destination;
 
-//    @JsonProperty("departureTime")
-//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-//    private LocalDateTime departureTime;
-//
-//    @JsonProperty("arrivalTime")
-//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-//    private LocalDateTime arrivalTime;
+    @JsonProperty("departureTime")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime departureTime;
+
+    @JsonProperty("arrivalTime")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime arrivalTime;
 
     private String carrier;
     private int price;
-
-//    @JsonProperty("segments")
-//    private List<FlightSegmentEntity> segments;
-
 
     public String getOrigin() {
         return origin;
@@ -46,21 +45,21 @@ public abstract class TicketEntity {
         this.destination = destination;
     }
 
-//    public LocalDateTime getDepartureTime() {
-//        return departureTime;
-//    }
-//
-//    public void setDepartureTime(LocalDateTime departureTime) {
-//        this.departureTime = departureTime;
-//    }
-//
-//    public LocalDateTime getArrivalTime() {
-//        return arrivalTime;
-//    }
-//
-//    public void setArrivalTime(LocalDateTime arrivalTime) {
-//        this.arrivalTime = arrivalTime;
-//    }
+    public LocalDateTime getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(LocalDateTime departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public LocalDateTime getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(LocalDateTime arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
 
     public String getCarrier() {
         return carrier;
@@ -78,20 +77,12 @@ public abstract class TicketEntity {
         this.price = price;
     }
 
-
-    public abstract Duration getTotalFlightDuration();
-//    public List<FlightSegmentEntity> getSegments() {
-//        return segments;
-//    }
-//
-//    public void setSegments(List<FlightSegmentEntity> segments) {
-//        this.segments = segments;
-//    }
-//
-//    public Duration getTotalFlightDuration() {
-//        return segments.stream()
-//                .map(segment -> Duration.between(segment.getDepartureTime(), segment.getArrivalTime()))
-//                .reduce(Duration.ZERO, Duration::plus);
-//    }
+    public Duration getFlightDuration() {
+        if (departureTime != null && arrivalTime != null) {
+            return Duration.between(departureTime, arrivalTime);
+        } else {
+            return Duration.ZERO; // Если время не установлено
+        }
+    }
 
 }

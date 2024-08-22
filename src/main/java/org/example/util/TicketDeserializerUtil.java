@@ -16,7 +16,6 @@ public class TicketDeserializerUtil {
         mapper.registerModule(new JavaTimeModule());
 
         SimpleModule module = new SimpleModule();
-        module.addDeserializer(TicketEntity.class, new TicketDeserializer());
         mapper.registerModule(module);
 
         return mapper.readValue(new File(filePath), new TypeReference<>() {});

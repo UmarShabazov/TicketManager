@@ -4,16 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a683231-192c-405d-8f6a-fcad4a632af6" name="Changes" comment="Implemented flight ticket analysis and processing logic&#10;&#10;- Created Ticket entity and deserialization logic for tickets using Jackson.&#10;- Implemented PriceAnalyzer to calculate average and median ticket prices, including methods for filtering and sorting ticket prices.&#10;- Developed FlightDurationCalculator to compute minimum flight duration for each carrier, optimized logic to handle empty ticket lists.&#10;- Added comprehensive JSON data samples for testing, with a variety of flight durations and ticket prices.&#10;- Refined error handling in main application logic, integrating exception throwing.">
+    <list default="true" id="9a683231-192c-405d-8f6a-fcad4a632af6" name="Changes" comment="Refactored TicketEntity structure and adapted logic:&#10;- Split TicketEntity into abstract class with DirectFlightEntity and ConnectingFlightEntity subclasses.&#10;- Introduced FlightSegmentEntity to handle segments in connecting flights.&#10;- Adapted flight duration and price analysis methods to support both direct and connecting flights.&#10;- Updated and expanded tests to validate new structure and logic.">
+      <change afterPath="$PROJECT_DIR$/src/test/java/TicketDeserializerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/FlightAnalyzerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/FlightDurationCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/FlightDurationCalculatorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PriceAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/PriceAnalyzerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TicketDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/util/TicketDeserializerUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TicketEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entity/TicketEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entity/ConnectingFlightEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entity/DirectFlightEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entity/FlightSegmentEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entity/TicketEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entity/TicketEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/FlightDurationCalculatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/FlightDurationCalculatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/PriceAnalyzerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/PriceAnalyzerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/TicketDeserializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/TicketDeserializerUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/util/TicketDeserializerUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/tickets.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tickets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ticketsTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ticketsTest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/FlightAnalyzerImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FlightAnalyzerImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/FlightAnalyzerImplTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +62,18 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.FlightAnalyzerImpl.executor": "Run",
-    "Application.Run FlightAnalyzer.executor": "Run",
+    "Application.Run FlightAnalyzer.executor": "Debug",
     "JUnit.FlightAnalyzerImplTest.executor": "Run",
     "JUnit.FlightAnalyzerImplTest.testCalculateMinFlightTime.executor": "Run",
     "JUnit.FlightAnalyzerImplTest.testCalculatePriceDifference.executor": "Run",
     "JUnit.FlightAnalyzerImplTest.testDeserializeTickets.executor": "Run",
+    "JUnit.FlightDurationCalculatorServiceTest.CalculateMinFlightTime.executor": "Run",
+    "JUnit.FlightDurationCalculatorServiceTest.executor": "Run",
+    "JUnit.MainTest.CalculateMinFlightTime.executor": "Run",
+    "JUnit.MainTest.executor": "Run",
+    "JUnit.MainTest.testCalculatePriceDifference.executor": "Run",
+    "JUnit.MainTest.testDeserializeTickets.executor": "Run",
+    "JUnit.PriceAnalyzerServiceTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
@@ -70,19 +82,6 @@
   }
 }]]></component>
   <component name="RunManager" selected="Application.Run FlightAnalyzer">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
-      <module name="TestTicketsManager" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.entity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Run FlightAnalyzer" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="TestTicketsManager" />
@@ -91,39 +90,48 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FlightAnalyzerImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FlightDurationCalculatorServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TestTicketsManager" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FlightAnalyzerImplTest" />
+      <option name="MAIN_CLASS_NAME" value="FlightDurationCalculatorServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FlightAnalyzerImplTest.testCalculateMinFlightTime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FlightDurationCalculatorServiceTest.CalculateMinFlightTime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TestTicketsManager" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FlightAnalyzerImplTest" />
-      <option name="METHOD_NAME" value="testCalculateMinFlightTime" />
+      <option name="MAIN_CLASS_NAME" value="FlightDurationCalculatorServiceTest" />
+      <option name="METHOD_NAME" value="CalculateMinFlightTime" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FlightAnalyzerImplTest.testCalculatePriceDifference" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PriceAnalyzerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TestTicketsManager" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FlightAnalyzerImplTest" />
+      <option name="MAIN_CLASS_NAME" value="PriceAnalyzerServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TicketDeserializerTest.testCalculatePriceDifference" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TestTicketsManager" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TicketDeserializerTest" />
       <option name="METHOD_NAME" value="testCalculatePriceDifference" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FlightAnalyzerImplTest.testDeserializeTickets" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TicketDeserializerTest.testDeserializeTickets" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TestTicketsManager" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FlightAnalyzerImplTest" />
+      <option name="MAIN_CLASS_NAME" value="TicketDeserializerTest" />
       <option name="METHOD_NAME" value="testDeserializeTickets" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -132,19 +140,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Run FlightAnalyzer" />
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.FlightAnalyzerImplTest.testCalculatePriceDifference" />
-      <item itemvalue="JUnit.FlightAnalyzerImplTest" />
-      <item itemvalue="JUnit.FlightAnalyzerImplTest.testCalculateMinFlightTime" />
-      <item itemvalue="JUnit.FlightAnalyzerImplTest.testDeserializeTickets" />
+      <item itemvalue="JUnit.FlightDurationCalculatorServiceTest" />
+      <item itemvalue="JUnit.FlightDurationCalculatorServiceTest.CalculateMinFlightTime" />
+      <item itemvalue="JUnit.PriceAnalyzerServiceTest" />
+      <item itemvalue="JUnit.TicketDeserializerTest.testCalculatePriceDifference" />
+      <item itemvalue="JUnit.TicketDeserializerTest.testDeserializeTickets" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FlightAnalyzerImplTest" />
-        <item itemvalue="JUnit.FlightAnalyzerImplTest.testCalculatePriceDifference" />
-        <item itemvalue="JUnit.FlightAnalyzerImplTest.testCalculateMinFlightTime" />
-        <item itemvalue="JUnit.FlightAnalyzerImplTest.testDeserializeTickets" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.FlightDurationCalculatorServiceTest" />
+        <item itemvalue="JUnit.FlightDurationCalculatorServiceTest.CalculateMinFlightTime" />
+        <item itemvalue="JUnit.PriceAnalyzerServiceTest" />
+        <item itemvalue="JUnit.TicketDeserializerTest.testCalculatePriceDifference" />
+        <item itemvalue="JUnit.TicketDeserializerTest.testDeserializeTickets" />
       </list>
     </recent_temporary>
   </component>
@@ -165,12 +173,21 @@
       <option name="project" value="LOCAL" />
       <updated>1724244124687</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Refactored TicketEntity structure and adapted logic:&#10;- Split TicketEntity into abstract class with DirectFlightEntity and ConnectingFlightEntity subclasses.&#10;- Introduced FlightSegmentEntity to handle segments in connecting flights.&#10;- Adapted flight duration and price analysis methods to support both direct and connecting flights.&#10;- Updated and expanded tests to validate new structure and logic.">
+      <option name="closed" value="true" />
+      <created>1724267278126</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724267278126</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implemented flight ticket analysis and processing logic&#10;&#10;- Created Ticket entity and deserialization logic for tickets using Jackson.&#10;- Implemented PriceAnalyzer to calculate average and median ticket prices, including methods for filtering and sorting ticket prices.&#10;- Developed FlightDurationCalculator to compute minimum flight duration for each carrier, optimized logic to handle empty ticket lists.&#10;- Added comprehensive JSON data samples for testing, with a variety of flight durations and ticket prices.&#10;- Refined error handling in main application logic, integrating exception throwing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented flight ticket analysis and processing logic&#10;&#10;- Created Ticket entity and deserialization logic for tickets using Jackson.&#10;- Implemented PriceAnalyzer to calculate average and median ticket prices, including methods for filtering and sorting ticket prices.&#10;- Developed FlightDurationCalculator to compute minimum flight duration for each carrier, optimized logic to handle empty ticket lists.&#10;- Added comprehensive JSON data samples for testing, with a variety of flight durations and ticket prices.&#10;- Refined error handling in main application logic, integrating exception throwing." />
+    <MESSAGE value="Refactored TicketEntity structure and adapted logic:&#10;- Split TicketEntity into abstract class with DirectFlightEntity and ConnectingFlightEntity subclasses.&#10;- Introduced FlightSegmentEntity to handle segments in connecting flights.&#10;- Adapted flight duration and price analysis methods to support both direct and connecting flights.&#10;- Updated and expanded tests to validate new structure and logic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored TicketEntity structure and adapted logic:&#10;- Split TicketEntity into abstract class with DirectFlightEntity and ConnectingFlightEntity subclasses.&#10;- Introduced FlightSegmentEntity to handle segments in connecting flights.&#10;- Adapted flight duration and price analysis methods to support both direct and connecting flights.&#10;- Updated and expanded tests to validate new structure and logic." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -179,6 +196,29 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/example/entity/TicketEntity.java</url>
           <line>20</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/FlightDurationCalculatorServiceTest.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/service/PriceAnalyzerService.java</url>
+          <line>23</line>
+          <properties class="org.example.service.PriceAnalyzerService" method="calculateAveragePrice">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/service/PriceAnalyzerService.java</url>
+          <line>27</line>
+          <properties class="org.example.service.PriceAnalyzerService" method="calculateMedianPrice">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

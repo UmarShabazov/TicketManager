@@ -1,7 +1,10 @@
 package org.example;
 
+import org.example.entity.FlightGraph;
+import org.example.entity.RouteNode;
 import org.example.entity.TicketEntity;
 import org.example.service.FlightDurationCalculatorService;
+import org.example.service.FlightRouteFinderService;
 import org.example.service.PriceAnalyzerService;
 import org.example.util.TicketDeserializerUtil;
 
@@ -9,6 +12,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -21,13 +25,30 @@ public class Main {
 
         TicketDeserializerUtil deserializer = new TicketDeserializerUtil();
         FlightDurationCalculatorService durationCalculator = new FlightDurationCalculatorService();
+        FlightRouteFinderService routeFinder = new FlightRouteFinderService();
         PriceAnalyzerService priceAnalyzerService = new PriceAnalyzerService();
 
         try {
             List<TicketEntity> tickets = deserializer.deserializeTickets(args[0]);
 
-            Map<String, Duration> minFlightTime = durationCalculator.calculateMinFlightTime(tickets, "Vladivostok", "Tel Aviv");
-            double priceDifference = priceAnalyzerService.calculatePriceDifference(tickets, "Vladivostok", "Tel Aviv");
+            FlightGraph graph = new FlightGraph();
+            for (TicketEntity ticket : tickets) {
+                graph.addEdge(ticket);  // Добавляем каждый билет как ребро в граф
+            }
+
+            Map<String, List<RouteNode>> allRoutesByCarrier = routeFinder.findAllRoutesForEachCarrier(graph, "Vladivostok", "Tel Aviv");
+
+            if (allRoutesByCarrier.isEmpty()) {
+                System.out.println("No routes found.");
+                return;
+            }
+
+            Map<String, Duration> minFlightTime = durationCalculator.calculateMinFlightTime(allRoutesByCarrier);
+
+            List<RouteNode> allRoutes = allRoutesByCarrier.values().stream()
+                    .flatMap(List::stream)
+                    .collect(Collectors.toList());
+            double priceDifference = priceAnalyzerService.calculatePriceDifference(allRoutes);
 
             System.out.println("Minimum flight time by carrier:");
             for (Map.Entry<String, Duration> entry : minFlightTime.entrySet()) {
