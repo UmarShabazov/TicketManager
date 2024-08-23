@@ -23,17 +23,17 @@ public class Main {
             return;
         }
 
-        TicketDeserializerUtil deserializer = new TicketDeserializerUtil();
         FlightDurationCalculatorService durationCalculator = new FlightDurationCalculatorService();
         FlightRouteFinderService routeFinder = new FlightRouteFinderService();
         PriceAnalyzerService priceAnalyzerService = new PriceAnalyzerService();
 
         try {
-            List<TicketEntity> tickets = deserializer.deserializeTickets(args[0]);
+
+            List<TicketEntity> tickets = TicketDeserializerUtil.deserializeTickets(args[0]);
 
             FlightGraph graph = new FlightGraph();
             for (TicketEntity ticket : tickets) {
-                graph.addEdge(ticket);  // Добавляем каждый билет как ребро в граф
+                graph.addEdge(ticket);
             }
 
             Map<String, List<RouteNode>> allRoutesByCarrier = routeFinder.findAllRoutesForEachCarrier(graph, "Vladivostok", "Tel Aviv");

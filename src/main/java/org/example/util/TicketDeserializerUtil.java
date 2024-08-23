@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class TicketDeserializerUtil {
-    public List<TicketEntity> deserializeTickets(String filePath) throws IOException {
+    public static List<TicketEntity> deserializeTickets(String filePath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 

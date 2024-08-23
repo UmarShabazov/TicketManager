@@ -13,11 +13,11 @@ public class TicketDeserializerTest {
 
     @Test
     public void testDeserializeTickets() {
-        TicketDeserializerUtil deserializer = new TicketDeserializerUtil();
+
         String jsonFile = "C:\\Users\\Umar\\IdeaProjects\\TestTicketsManager\\src\\main\\resources\\ticketsTest.json";
         try {
 
-            List<TicketEntity> tickets = deserializer.deserializeTickets(jsonFile);
+            List<TicketEntity> tickets = TicketDeserializerUtil.deserializeTickets(jsonFile);
 
             assertNotNull(tickets);
             assertEquals(2, tickets.size());
