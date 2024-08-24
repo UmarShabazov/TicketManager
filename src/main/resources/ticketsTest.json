@@ -1,19 +1,27 @@
-[
-  {
-    "origin": "Vladivostok",
-    "destination": "Tel Aviv",
-    "carrier": "Aeroflot",
-    "price": 500,
-    "departureTime": "2024-08-20T10:15:00",
-    "arrivalTime": "2024-08-20T14:45:00"
-  },
-  {
-    "origin": "Vladivostok",
-    "destination": "Tel Aviv",
-    "carrier": "A7",
-    "price": 550,
-    "departureTime": "2024-08-21T11:15:00",
-    "arrivalTime": "2024-08-21T15:45:00"
-  }
-
-]
+{
+  "tickets": [{
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "16:20",
+    "arrival_date": "12.05.18",
+    "arrival_time": "22:10",
+    "carrier": "TK",
+    "stops": 3,
+    "price": 12400
+  }, {
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "17:20",
+    "arrival_date": "12.05.18",
+    "arrival_time": "23:50",
+    "carrier": "S7",
+    "stops": 1,
+    "price": 13100
+  }]
+}

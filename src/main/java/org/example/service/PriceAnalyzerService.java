@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.entity.RouteNode;
+import org.example.entity.TicketEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
  */
 public class PriceAnalyzerService {
 
-    public List<Integer> getSortedPricesFromRoutes(List<RouteNode> routes) {
-        return routes.stream()
-                .map(RouteNode::getTotalPrice)
+    public List<Integer> getSortedPricesFromRoutes(List<TicketEntity> tickets) {
+        return tickets.stream()
+                .map(TicketEntity::getPrice)
                 .sorted()
                 .collect(Collectors.toList());
     }
@@ -36,7 +36,7 @@ public class PriceAnalyzerService {
         }
     }
 
-    public double calculatePriceDifference(List<RouteNode> routes) {
+    public double calculatePriceDifference(List<TicketEntity> routes) {
         List<Integer> prices = getSortedPricesFromRoutes(routes);
         double averagePrice = calculateAveragePrice(prices);
         double medianPrice = calculateMedianPrice(prices);

@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.entity.RouteNode;
+import org.example.entity.TicketEntity;
 
 import java.time.Duration;
 import java.util.List;
@@ -10,21 +10,25 @@ import java.util.stream.Collectors;
 public class FlightDurationCalculatorService {
 
     /**
-     * Method for calculating the minimum flight duration between two cities for each carrier.
+     * Method for calculating the minimum flight duration between Vladivostok (VVO) and Tel Aviv (TLV) for each carrier.
      *
-     * @param allRoutesByCarrier Map of carrier to all possible routes.
+     * @param tickets List of tickets from Vladivostok to Tel Aviv.
      * @return A map where the key is the carrier's name, and the value is the minimum flight duration.
-     * Carriers without applicable tickets will not be included in the map.
      */
-
-    public Map<String, Duration> calculateMinFlightTime(Map<String, List<RouteNode>> allRoutesByCarrier) {
-        return allRoutesByCarrier.entrySet().stream()
+    public Map<String, Duration> calculateMinFlightTime(List<TicketEntity> tickets) {
+        return tickets.stream()
+                .collect(Collectors.groupingBy(
+                        TicketEntity::getCarrier,
+                        Collectors.mapping(
+                                TicketEntity::getFlightDuration,
+                                Collectors.minBy(Duration::compareTo)
+                        )
+                ))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue().isPresent())
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        entry -> entry.getValue().stream()
-                                .map(RouteNode::getTotalDuration)
-                                .min(Duration::compareTo)
-                                .orElse(Duration.ZERO)
+                        entry -> entry.getValue().get()
                 ));
     }
 }

@@ -1,114 +1,152 @@
-[
+﻿{
+  "tickets": [{
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "16:20",
+    "arrival_date": "12.05.18",
+    "arrival_time": "22:10",
+    "carrier": "TK",
+    "stops": 3,
+    "price": 12400
+  }, {
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "17:20",
+    "arrival_date": "12.05.18",
+    "arrival_time": "23:50",
+    "carrier": "S7",
+    "stops": 1,
+    "price": 13100
+  }, {
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "12:10",
+    "arrival_date": "12.05.18",
+    "arrival_time": "18:10",
+    "carrier": "SU",
+    "stops": 0,
+    "price": 15300
+  }, {
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "17:00",
+    "arrival_date": "12.05.18",
+    "arrival_time": "23:30",
+    "carrier": "TK",
+    "stops": 2,
+    "price": 11000
+  }, {
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "12:10",
+    "arrival_date": "12.05.18",
+    "arrival_time": "20:15",
+    "carrier": "BA",
+    "stops": 3,
+    "price": 13400
+  }, {
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "9:40",
+    "arrival_date": "12.05.18",
+    "arrival_time": "19:25",
+    "carrier": "SU",
+    "stops": 3,
+    "price": 12450
+  }, {
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "17:10",
+    "arrival_date": "12.05.18",
+    "arrival_time": "23:45",
+    "carrier": "TK",
+    "stops": 1,
+    "price": 13600
+  }, 
   {
-    "origin": "Vladivostok",
-    "destination": "Moscow",
-    "carrier": "Aeroflot",
-    "price": 9000,
-    "departureTime": "2024-08-21T09:00:00",
-    "arrivalTime": "2024-08-21T18:00:00"
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "UFA",
+    "destination_name": "Уфа",
+    "departure_date": "12.05.18",
+    "departure_time": "15:15",
+    "arrival_date": "12.05.18",
+    "arrival_time": "17:45",
+    "carrier": "TK",
+    "stops": 1,
+    "price": 33400
   },
   {
-    "origin": "Moscow",
-    "destination": "Tel Aviv",
-    "carrier": "Aeroflot",
-    "price": 6000,
-    "departureTime": "2024-08-21T22:00:00",
-    "arrivalTime": "2024-08-22T04:00:00"
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "6:10",
+    "arrival_date": "12.05.18",
+    "arrival_time": "15:25",
+    "carrier": "TK",
+    "stops": 0,
+    "price": 14250
+  }, 
+  {
+    "origin": "LRN",
+    "origin_name": "Ларнака",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "12:50",
+    "arrival_date": "12.05.18",
+    "arrival_time": "14:30",
+    "carrier": "SU",
+    "stops": 1,
+    "price": 7000
   },
   {
-    "origin": "Vladivostok",
-    "destination": "Beijing",
-    "carrier": "China Eastern",
-    "price": 6000,
-    "departureTime": "2024-08-21T08:00:00",
-    "arrivalTime": "2024-08-21T14:00:00"
-  },
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "16:50",
+    "arrival_date": "12.05.18",
+    "arrival_time": "23:35",
+    "carrier": "SU",
+    "stops": 1,
+    "price": 16700
+  }, 
   {
-    "origin": "Beijing",
-    "destination": "Tel Aviv",
-    "carrier": "China Eastern",
-    "price": 8000,
-    "departureTime": "2024-08-21T18:00:00",
-    "arrivalTime": "2024-08-22T03:00:00"
-  },
-  {
-    "origin": "Vladivostok",
-    "destination": "Shanghai",
-    "carrier": "China Eastern",
-    "price": 5000,
-    "departureTime": "2024-08-22T06:00:00",
-    "arrivalTime": "2024-08-22T13:00:00"
-  },
-  {
-    "origin": "Shanghai",
-    "destination": "Beijing",
-    "carrier": "China Eastern",
-    "price": 3000,
-    "departureTime": "2024-08-22T15:00:00",
-    "arrivalTime": "2024-08-22T18:00:00"
-  },
-  {
-    "origin": "Beijing",
-    "destination": "Tel Aviv",
-    "carrier": "China Eastern",
-    "price": 8000,
-    "departureTime": "2024-08-22T20:00:00",
-    "arrivalTime": "2024-08-23T05:00:00"
-  },
-  {
-    "origin": "Vladivostok",
-    "destination": "Seoul",
-    "carrier": "Korean Air",
-    "price": 6000,
-    "departureTime": "2024-08-23T07:00:00",
-    "arrivalTime": "2024-08-23T13:00:00"
-  },
-  {
-    "origin": "Seoul",
-    "destination": "Istanbul",
-    "carrier": "Korean Air",
-    "price": 9000,
-    "departureTime": "2024-08-23T16:00:00",
-    "arrivalTime": "2024-08-24T01:00:00"
-  },
-  {
-    "origin": "Istanbul",
-    "destination": "Tel Aviv",
-    "carrier": "Korean Air",
-    "price": 2000,
-    "departureTime": "2024-08-24T03:00:00",
-    "arrivalTime": "2024-08-24T05:00:00"
-  },
-  {
-    "origin": "Vladivostok",
-    "destination": "Dubai",
-    "carrier": "Emirates",
-    "price": 8000,
-    "departureTime": "2024-08-24T02:00:00",
-    "arrivalTime": "2024-08-24T10:00:00"
-  },
-  {
-    "origin": "Dubai",
-    "destination": "Tel Aviv",
-    "carrier": "Emirates",
-    "price": 4000,
-    "departureTime": "2024-08-24T14:00:00",
-    "arrivalTime": "2024-08-24T18:00:00"
-  },
-  {
-    "origin": "Vladivostok",
-    "destination": "Doha",
-    "carrier": "Emirates",
-    "price": 7000,
-    "departureTime": "2024-08-24T07:00:00",
-    "arrivalTime": "2024-08-24T14:00:00"
-  },
-  {
-    "origin": "Doha",
-    "destination": "Tel Aviv",
-    "carrier": "Emirates",
-    "price": 4000,
-    "departureTime": "2024-08-24T18:00:00",
-    "arrivalTime": "2024-08-24T22:00:00"
-  }
-]
+    "origin": "VVO",
+    "origin_name": "Владивосток",
+    "destination": "TLV",
+    "destination_name": "Тель-Авив",
+    "departure_date": "12.05.18",
+    "departure_time": "6:10",
+    "arrival_date": "12.05.18",
+    "arrival_time": "16:15",
+    "carrier": "S7",
+    "stops": 0,
+    "price": 17400
+  }]
+}

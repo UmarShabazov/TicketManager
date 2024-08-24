@@ -1,12 +1,9 @@
 
-
-import org.example.entity.RouteNode;
+import org.example.entity.TicketEntity;
 import org.example.service.PriceAnalyzerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,11 +20,11 @@ public class PriceAnalyzerServiceTest {
 
     @Test
     public void testGetSortedPricesFromRoutes() {
-        RouteNode route1 = createRouteNodeWithPrice(6000);
-        RouteNode route2 = createRouteNodeWithPrice(4000);
-        RouteNode route3 = createRouteNodeWithPrice(7000);
+        TicketEntity ticket1 = createTicketEntityWithPrice(6000);
+        TicketEntity ticket2 = createTicketEntityWithPrice(4000);
+        TicketEntity ticket3 = createTicketEntityWithPrice(7000);
 
-        List<RouteNode> routes = Arrays.asList(route1, route2, route3);
+        List<TicketEntity> routes = Arrays.asList(ticket1, ticket2, ticket3);
 
         List<Integer> sortedPrices = priceAnalyzerService.getSortedPricesFromRoutes(routes);
 
@@ -63,23 +60,21 @@ public class PriceAnalyzerServiceTest {
 
     @Test
     public void testCalculatePriceDifference() {
-        RouteNode route1 = createRouteNodeWithPrice(6000);
-        RouteNode route2 = createRouteNodeWithPrice(4000);
-        RouteNode route3 = createRouteNodeWithPrice(7000);
+        TicketEntity ticket1 = createTicketEntityWithPrice(6000);
+        TicketEntity ticket2 = createTicketEntityWithPrice(4000);
+        TicketEntity ticket3 = createTicketEntityWithPrice(7000);
 
-        List<RouteNode> routes = Arrays.asList(route1, route2, route3);
+        List<TicketEntity> routes = Arrays.asList(ticket1, ticket2, ticket3);
 
         double priceDifference = priceAnalyzerService.calculatePriceDifference(routes);
 
         assertEquals(5666.67 - 6000, priceDifference, 0.01);
     }
 
-    private RouteNode createRouteNodeWithPrice(int price) {
-        return new RouteNode("dummyCity", Duration.ZERO, new ArrayList<>(), null) {
-            @Override
-            public int getTotalPrice() {
-                return price;
-            }
-        };
+    private TicketEntity createTicketEntityWithPrice(int price) {
+        TicketEntity ticket = new TicketEntity();
+        ticket.setPrice(price);
+        return ticket;
     }
+
 }

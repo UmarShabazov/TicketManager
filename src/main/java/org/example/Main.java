@@ -1,10 +1,8 @@
 package org.example;
 
-import org.example.entity.FlightGraph;
-import org.example.entity.RouteNode;
 import org.example.entity.TicketEntity;
+import org.example.entity.TicketWrapper;
 import org.example.service.FlightDurationCalculatorService;
-import org.example.service.FlightRouteFinderService;
 import org.example.service.PriceAnalyzerService;
 import org.example.util.TicketDeserializerUtil;
 
@@ -19,39 +17,34 @@ public class Main {
     public static void main(String[] args) {
 
         if (args.length != 1) {
-            System.out.println("Usage: java FlightAnalyzerImpl <path_to_tickets.json>");
+            System.out.println("Usage: java -jar TestTicketsManager-1.0-SNAPSHOT.jar <path_to_tickets.json>");
             return;
         }
 
         FlightDurationCalculatorService durationCalculator = new FlightDurationCalculatorService();
-        FlightRouteFinderService routeFinder = new FlightRouteFinderService();
         PriceAnalyzerService priceAnalyzerService = new PriceAnalyzerService();
 
         try {
 
-            List<TicketEntity> tickets = TicketDeserializerUtil.deserializeTickets(args[0]);
+            TicketWrapper ticketWrapper = TicketDeserializerUtil.deserializeTickets(args[0]);
+            List<TicketEntity> tickets = ticketWrapper.getTickets();
 
-            FlightGraph graph = new FlightGraph();
-            for (TicketEntity ticket : tickets) {
-                graph.addEdge(ticket);
-            }
+            List<TicketEntity> flightsFromVVOToTLV = tickets.stream()
+                    .filter(ticket -> ticket.getOrigin().equals("VVO") && ticket.getDestination().equals("TLV"))
+                    .collect(Collectors.toList());
 
-            Map<String, List<RouteNode>> allRoutesByCarrier = routeFinder.findAllRoutesForEachCarrier(graph, "Vladivostok", "Tel Aviv");
-
-            if (allRoutesByCarrier.isEmpty()) {
-                System.out.println("No routes found.");
+            if (flightsFromVVOToTLV.isEmpty()) {
+                System.out.println("No flights found from Vladivostok to Tel Aviv.");
                 return;
             }
 
-            Map<String, Duration> minFlightTime = durationCalculator.calculateMinFlightTime(allRoutesByCarrier);
+            Map<String, Duration> minFlightTimeByCarrier = durationCalculator.calculateMinFlightTime(flightsFromVVOToTLV);
 
-            List<RouteNode> allRoutes = allRoutesByCarrier.values().stream()
-                    .flatMap(List::stream)
-                    .collect(Collectors.toList());
-            double priceDifference = priceAnalyzerService.calculatePriceDifference(allRoutes);
+
+            double priceDifference = priceAnalyzerService.calculatePriceDifference(flightsFromVVOToTLV);
 
             System.out.println("Minimum flight time by carrier:");
-            for (Map.Entry<String, Duration> entry : minFlightTime.entrySet()) {
+            for (Map.Entry<String, Duration> entry : minFlightTimeByCarrier.entrySet()) {
                 System.out.printf("%s: %d hours and %d minutes%n",
                         entry.getKey(),
                         entry.getValue().toHours(),
