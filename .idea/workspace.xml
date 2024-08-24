@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a683231-192c-405d-8f6a-fcad4a632af6" name="Changes" comment="Refactor: Update application logic to accommodate new JSON format&#10;&#10;- Modified `TicketEntity` class to handle separate date and time fields (`departure_date`, `departure_time`, `arrival_date`, `arrival_time`).&#10;- Introduced `TicketWrapper` class to represent the JSON root object structure containing the tickets array.&#10;- Updated `TicketDeserializerUtil` to parse JSON data using the new format.&#10;- Refactored `Main` class to filter and process tickets based on the new JSON structure.&#10;- Adjusted `PriceAnalyzerService` and `FlightDurationCalculatorService` to work with updated ticket data.&#10;- Updated unit tests to ensure compatibility with the new JSON structure and validate the updated logic.&#10;- Deleted FlightGraph.java, FlightRouteFinderService.java, RouteNode.java">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/entity/TicketWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entity/FlightGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entity/RouteNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entity/TicketEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entity/TicketEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/FlightDurationCalculatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/FlightDurationCalculatorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/FlightRouteFinderService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/PriceAnalyzerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/PriceAnalyzerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/TicketDeserializerUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/util/TicketDeserializerUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tickets.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tickets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ticketsTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ticketsTest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/FlightDurationCalculatorServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FlightDurationCalculatorServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PriceAnalyzerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PriceAnalyzerServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TicketDeserializerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TicketDeserializerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="9a683231-192c-405d-8f6a-fcad4a632af6" name="Changes" comment="Refactor: Update application logic to accommodate new JSON format&#10;&#10;- Modified `TicketEntity` class to handle separate date and time fields (`departure_date`, `departure_time`, `arrival_date`, `arrival_time`).&#10;- Introduced `TicketWrapper` class to represent the JSON root object structure containing the tickets array.&#10;- Updated `TicketDeserializerUtil` to parse JSON data using the new format.&#10;- Refactored `Main` class to filter and process tickets based on the new JSON structure.&#10;- Adjusted `PriceAnalyzerService` and `FlightDurationCalculatorService` to work with updated ticket data.&#10;- Updated unit tests to ensure compatibility with the new JSON structure and validate the updated logic.&#10;- Deleted FlightGraph.java, FlightRouteFinderService.java, RouteNode.java" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -211,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724415186090</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Refactor: Update application logic to accommodate new JSON format&#10;&#10;- Modified `TicketEntity` class to handle separate date and time fields (`departure_date`, `departure_time`, `arrival_date`, `arrival_time`).&#10;- Introduced `TicketWrapper` class to represent the JSON root object structure containing the tickets array.&#10;- Updated `TicketDeserializerUtil` to parse JSON data using the new format.&#10;- Refactored `Main` class to filter and process tickets based on the new JSON structure.&#10;- Adjusted `PriceAnalyzerService` and `FlightDurationCalculatorService` to work with updated ticket data.&#10;- Updated unit tests to ensure compatibility with the new JSON structure and validate the updated logic.&#10;- Deleted FlightGraph.java, FlightRouteFinderService.java, RouteNode.java">
+      <option name="closed" value="true" />
+      <created>1724502000234</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724502000234</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

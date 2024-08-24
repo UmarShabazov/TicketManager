@@ -45,10 +45,14 @@ public class Main {
 
             System.out.println("Minimum flight time by carrier:");
             for (Map.Entry<String, Duration> entry : minFlightTimeByCarrier.entrySet()) {
-                System.out.printf("%s: %d hours and %d minutes%n",
-                        entry.getKey(),
-                        entry.getValue().toHours(),
-                        entry.getValue().toMinutesPart());
+                long hours = entry.getValue().toHours();
+                long minutes = entry.getValue().toMinutesPart();
+
+                if (minutes == 0) {
+                    System.out.printf("%s: %d hours%n", entry.getKey(), hours);
+                } else {
+                    System.out.printf("%s: %d hours and %d minutes%n", entry.getKey(), hours, minutes);
+                }
             }
 
             System.out.printf("Difference between average price and median price: %.2f%n", priceDifference);
