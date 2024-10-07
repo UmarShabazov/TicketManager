@@ -51,7 +51,7 @@ public class PriceAnalyzerServiceTest {
 
     @Test
     public void testCalculateMedianPriceWithEvenNumberOfPrices() {
-        List<Integer> prices = Arrays.asList(4000, 6000, 7000, 8000);
+        List<Integer> prices = Arrays.asList(5000, 6000, 7000, 8000);
 
         double medianPrice = priceAnalyzerService.calculateMedianPrice(prices);
 
